@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Gagana's Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+    <h1>🧠 Computer Science Quiz</h1>
+    <p>Test Your Knowledge!</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="learning.html">Learning</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
+</header>
+
+    <section id="quiz">
+        <h2 id="difficultyTitle">Easy Computer Questions</h2>
+
+    <div id="questionsContainer"></div>
+
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+<p id="progressText">Progress: 0 / 10</p>
+        <h2 id="quizScore">Your Score: 0 / 10</h2>
+        <h3>⏱️ Time: <span id="timer">00:00</span></h3>
+        <h3 id="finalMessage"></h3>
+        <div class="registration">
+    <h2>📊 My Learning Progress</h2>
+    <p>Quizzes Completed: <span id="quizCount">0</span></p>
+    <p>Best Score: <span id="bestScore">0</span> / 10</p>
+</div>
+<button onclick="showFinalResult()">🏆 Show Final Result</button>
+        <button onclick="restartQuiz()">🔄 Restart Quiz</button>
+        <button onclick="generateCertificate()">🏆 Get Certificate</button>
+        <p>Enter your name:</p>
+<input type="text" id="studentName" placeholder="Enter your name">
+        <div id="certificate" style="display: none;">
+    <h1>🏆 Certificate of Achievement</h1>
+    <h2>Gagana's Learning Hub</h2>
+    <p>This certificate is proudly presented to</p>
+
+    <p>For successfully completing the Computer Science Quiz!</p>
+    <h3 id="certificateScore"></h3>
+    <button onclick="window.print()">🖨️ Print Certificate</button>
+</div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

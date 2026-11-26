@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+    <h1>🎓 Gagana's Learning Hub</h1>
+    <p>Student Dashboard</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="learning.html">Learning</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Logout</a>
+    </nav>
+</header>
+
+    <section class="registration">
+        <h2>Welcome to Your Dashboard! 👋</h2>
+        <p>Continue your learning journey.</p>
+        <div class="registration">
+    <h2>🌟 Daily Quiz Challenge</h2>
+
+    <p id="dailyQuestion">
+        What does HTML stand for?
+    </p>
+
+    <button onclick="checkDailyAnswer('wrong')">
+        High Text Machine Language
+    </button>
+
+    <button onclick="checkDailyAnswer('correct')">
+        HyperText Markup Language
+    </button>
+
+    <p id="dailyResult"></p>
+</div>
+        <div class="registration">
+    <h2>🔥 My Study Streak</h2>
+
+    <h1><span id="studyStreak">0</span> Days</h1>
+
+    <p>Keep learning every day!</p>
+</div>
+        <div class="registration">
+    <h2>📊 My Quiz Achievements</h2>
+
+    <p>Quizzes Completed:
+        <span id="dashboardQuizCount">0</span>
+    </p>
+
+    <p>Best Score:
+        <span id="dashboardBestScore">0</span> / 10
+    </p>
+</div>
+
+        <h3>📚 My Subjects</h3>
+        <p>Computer Science</p>
+        <p>Mathematics</p>
+        <p>English</p>
+
+        <h3>📝 My Quiz</h3>
+        <a href="learning.html">
+    <button>📚 Back to Learning</button>
+</a>
+<h2>🏆 Student Leaderboard</h2>
+
+<table class="leaderboard">
+    <tr>
+        <th>Student Name</th>
+        <th>Quiz Score</th>
+    </tr>
+
+    <tr>
+        <td>🥇 You</td>
+        <td id="leaderboardScore">0 / 10</td>
+    </tr>
+</table>
+        <h3>🏆 My Achievements</h3>
+        <p>Complete quizzes to earn certificates!</p>
+
+        <a href="index.html">
+    <button>🚪 Logout</button>
+</a>
+    </section>
+    document.getElementById("leaderboardScore").textContent =
+    (localStorage.getItem("bestScore") || 0) + " / 10";
+<script>
+    document.getElementById("dashboardQuizCount").textContent =
+        localStorage.getItem("quizCount") || 0;
+
+    document.getElementById("dashboardBestScore").textContent =
+        localStorage.getItem("bestScore") || 0;
+        // Study Streak Tracker
+
+let today = new Date();
+
+let todayDate =
+    today.getFullYear() + "-" +
+    String(today.getMonth() + 1).padStart(2, "0") + "-" +
+    String(today.getDate()).padStart(2, "0");
+
+let lastVisit = localStorage.getItem("lastStudyDate");
+let streak = Number(localStorage.getItem("studyStreak")) || 0;
+
+if (lastVisit !== todayDate) {
+
+    if (lastVisit) {
+        let previous = new Date(lastVisit + "T00:00:00");
+        let current = new Date(todayDate + "T00:00:00");
+
+        let difference = Math.round(
+            (current - previous) / (1000 * 60 * 60 * 24)
+        );
+
+        if (difference === 1) {
+            streak++;
+        } else {
+            streak = 1;
+        }
+
+    } else {
+        streak = 1;
+    }
+
+    localStorage.setItem("studyStreak", streak);
+    localStorage.setItem("lastStudyDate", todayDate);
+}
+
+document.getElementById("studyStreak").textContent = streak;
+function checkDailyAnswer(answer) {
+    let today = new Date().toDateString();
+
+    let completedDate = localStorage.getItem("dailyQuizDate");
+
+    let result = document.getElementById("dailyResult");
+
+    if (completedDate === today) {
+        result.textContent = "You have already completed today's challenge!";
+        return;
+    }
+
+    if (answer === "correct") {
+        result.textContent = "🎉 Correct! Excellent work!";
+        result.style.color = "green";
+
+        localStorage.setItem("dailyQuizDate", today);
+    } else {
+        result.textContent = "❌ Incorrect! Try again!";
+        result.style.color = "red";
+    }
+}
+</script>
+</body>
+</html>

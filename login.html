@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Gagana's Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+    <h1>🎓 Gagana's Learning Hub</h1>
+    <p>Student Login</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="learning.html">Learning</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
+</header>
+
+    <section class="registration">
+        <h2>Welcome Back!</h2>
+
+        <form id="loginForm">
+
+            <label>Email Address</label>
+            <input type="email" id="loginEmail"
+                   placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" id="loginPassword"
+                   placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <p>Don't have an account?
+            <a href="register.html">Register here</a>
+        </p>
+
+        <a href="index.html">← Back to Home</a>
+        <p>
+    <a href="learning.html">Go to Learning Hub</a>
+</p>
+    </section>
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    window.location.href = "dashboard.html";
+});
+</script>
+</body>
+</html>
